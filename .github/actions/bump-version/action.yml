@@ -1,5 +1,5 @@
 name: "Bumping SemVer"
-description: "Bumping SemVer for golang"
+description: "Bumping SemVer"
 inputs:
   service-name: 
     description: 'Service name'
@@ -20,13 +20,12 @@ runs:
       run: | 
         CURR_VER=$(cat ${{ inputs.service-name }}/version)
 
-        chmod +x ../scripts/semver
-        NEW_VER=$(../scripts/semver bump patch $CURR_VER)
+        chmod +x ./src/scripts/semver
+        NEW_VER=$(./src/scripts/semver bump patch $CURR_VER)
         echo $NEW_VER > ${{ inputs.service-name }}/version
 
         echo ::set-output name=current-number::${CURR_VER}
         echo ::set-output name=next-number::${NEW_VER}
 
       shell: bash
-      working-directory: ./src/backend/services
       
