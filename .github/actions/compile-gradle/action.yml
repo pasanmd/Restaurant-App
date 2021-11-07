@@ -1,5 +1,5 @@
-name: "Building golang app"
-description: "Builds specific go application within the given folder"
+name: "Building gradle"
+description: "Builds gradle application within the given folder"
 inputs:
   service-name: 
     description: 'Service name'
@@ -11,6 +11,7 @@ runs:
   steps:
     - run: |
         cd ${{ inputs.service-name }}
-        go build
-        go test ./...
+        ./gradlew clean
+        ./gradlew build
+        ./gradlew test jacocoTestReport
       shell: bash
