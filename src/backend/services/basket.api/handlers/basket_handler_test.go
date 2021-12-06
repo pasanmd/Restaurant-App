@@ -1,4 +1,4 @@
-package controllers
+package handlers
 
 import (
 	"bytes"
@@ -41,7 +41,7 @@ func TestBasketController(t *testing.T) {
 	mockedBasketRepository.On("GetBasket", "abcd").Return(&customerBasket, nil).Once()
 	mockedBasketRepository.On("GetBasket", "invalid").Return(&customerBasket, fmt.Errorf("Not found item with id: %s", "invalid")).Once()
 	mockedBasketRepository.On("Update", &customerBasket).Return(nil)
-	var controller = NewBasketController(mockedBasketRepository)
+	var controller = NewBasketHandler(mockedBasketRepository)
 
 	router := gin.Default()
 	basket := router.Group("basket")

@@ -1,4 +1,4 @@
-package controllers
+package handlers
 
 import (
 	"net/http"
@@ -8,14 +8,14 @@ import (
 	"github.com/jurabek/basket.api/repositories"
 )
 
-// BasketController is router initializer for http
-type BasketController struct {
+// BasketHandler is router initializer for http
+type BasketHandler struct {
 	BasketRepository repositories.BasketRepository
 }
 
-// NewBasketController creates new instance of BasketController with BasketRepository
-func NewBasketController(r repositories.BasketRepository) *BasketController {
-	return &BasketController{BasketRepository: r}
+// NewBasketHandler creates new instance of BasketController with BasketRepository
+func NewBasketHandler(r repositories.BasketRepository) *BasketHandler {
+	return &BasketHandler{BasketRepository: r}
 }
 
 // Create go doc
@@ -29,7 +29,7 @@ func NewBasketController(r repositories.BasketRepository) *BasketController {
 // @Failure 400 {object} models.HTTPError
 // @Router /items [post]
 // @Security OAuth
-func (bc *BasketController) Create(c *gin.Context) {
+func (bc *BasketHandler) Create(c *gin.Context) {
 	var entity models.CustomerBasket
 	c.BindJSON(&entity)
 
@@ -63,7 +63,7 @@ func (bc *BasketController) Create(c *gin.Context) {
 // @Failure 400 {object} models.HTTPError
 // @Router /items/{id} [get]
 // @Security OAuth
-func (bc *BasketController) Get(c *gin.Context) {
+func (bc *BasketHandler) Get(c *gin.Context) {
 	id := c.Param("id")
 
 	result, err := bc.BasketRepository.GetBasket(id)
@@ -87,7 +87,7 @@ func (bc *BasketController) Get(c *gin.Context) {
 // @Failure 400 {object} models.HTTPError
 // @Router /items/{id} [delete]
 // @Security OAuth
-func (bc *BasketController) Delete(c *gin.Context) {
+func (bc *BasketHandler) Delete(c *gin.Context) {
 	id := c.Param("id")
 
 	err := bc.BasketRepository.Delete(id)
