@@ -39,9 +39,9 @@ public class OrdersController {
 		return null;
 	}
 
-	@GET
-	public List<OrderDto> getData() {
-		return this.ordersService.getAll();
+	@GET()
+	public List<OrderDto> getData(@RestQuery Integer offset, @RestQuery Integer limit) {
+		return this.ordersService.getAll(offset, limit);
 	}
 
 	@GET
