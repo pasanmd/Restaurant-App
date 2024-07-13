@@ -21,6 +21,6 @@ public class OrdersRepository implements PanacheRepositoryBase<Order, UUID> {
     }
 
     public List<Order> fetchAll(Integer start, Integer end) {
-      return find("#Orders.fetchAll").range(start, end).list();
+      return this.findAll().range(start, end).list();
     }
 }
