@@ -61,4 +61,9 @@ public class OrdersServicesIml implements OrdersService {
         }
         return mapper.mapOrderToDto(order);
     }
+
+    @Override
+    public Long getCount() {
+        return ordersRepository.count();
+    }
 }

@@ -76,8 +76,8 @@ public class OrdersControllerTests {
         mockResults.add(new OrderDto());
 
         when(ordersService.getAll(0, 10)).thenReturn(mockResults);
-        List<OrderDto> result = ordersController.getData(0, 10);
-        Assertions.assertEquals(mockResults, result);
+        var result = ordersController.getAll(0, 10);
+        Assertions.assertEquals(mockResults, result.getOrders());
         verify(ordersService, times(1)).getAll(0, 10);
     }
 

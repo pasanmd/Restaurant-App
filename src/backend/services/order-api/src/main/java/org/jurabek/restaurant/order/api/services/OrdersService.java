@@ -14,6 +14,8 @@ public interface OrdersService {
 
     List<OrderDto> getAll(Integer offset, Integer limit);
 
+    Long getCount();
+
     OrderDto getById(String orderId);
     void Delete(String orderId);
 }
